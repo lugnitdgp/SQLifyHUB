@@ -8,6 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("org.openjfx.javafxplugin") version "0.0.10"
 }
 
 repositories {
@@ -23,6 +24,8 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
+    implementation("org.postgresql:postgresql:42.1.4")
+    
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -35,6 +38,11 @@ java {
 application {
     // Define the main class for the application.
     mainClass.set("tdoc_java.App")
+}
+
+javafx {
+    version = "19"
+    modules = listOf("javafx.controls", "javafx.fxml")
 }
 
 tasks.named<Test>("test") {
