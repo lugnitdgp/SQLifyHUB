@@ -1,0 +1,57 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 04-Dec-2023, 1:37:04 pm
+    Author     : ghostoo7
+*/
+
+.vbox_background_center{
+    -fx-background-image: url("../assets/splash.gif");
+    -fx-background-size: contain;
+    
+}
+
+.vbox_background_right{
+    -fx-background-color: black;
+}
+
+.button_active{
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-background-color: #407BFF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.button_active:hover{
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-background-color: #407BFF;
+    -fx-text-fill: white;
+}
+
+.button_inactive{
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-background-color: white;
+    -fx-text-fill: #407BFF;
+    -fx-border-color:#407BFF;
+    -fx-border-width: 1px;
+    -fx-shadow: none;
+    -fx-font-weight: bold;
+}
+
+.button_inactive:hover{
+    -fx-background-color: #407BFF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.input_textfeild{
+    -fx-background-color: white;
+    -fx-border-radius: 30;
+    -fx-background-radius: 30;
+    -fx-text-fill: black;
+}
