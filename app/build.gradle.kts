@@ -8,7 +8,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
-    id("org.openjfx.javafxplugin") version "0.0.10"
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 repositories {
@@ -24,7 +24,7 @@ dependencies {
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation("org.postgresql:postgresql:42.1.4")
+    implementation("org.postgresql:postgresql:42.2.27")
     
 }
 
@@ -41,8 +41,8 @@ application {
 }
 
 javafx {
-    version = "19"
-    modules = listOf("javafx.controls", "javafx.fxml")
+    version = "21.0.1"
+    modules = listOf<String>("javafx.controls","javafx.fxml")
 }
 
 tasks.named<Test>("test") {
