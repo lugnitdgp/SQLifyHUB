@@ -149,6 +149,31 @@ public class DashboardController implements Initializable  {
         }
     }
 
+    public ObservableList<String> getTables(){
+        ObservableList<String> tableList = FXCollections.observableArrayList();
+        Connection con = getConnection();
+        String query = "SELECT * FROM information_schema.tables \n" +
+                "WHERE table_schema = 'public';";
+        Statement st;
+        ResultSet rs;
+        try{
+            st=con.createStatement();
+            rs = st.executeQuery(query);
+            String tableName;
+            while (rs.next()){
+
+                tableName = rs.getString("tablename");
+                tableList.add(tableName);
+            }
+
+        }catch (Exception e){
+            return null;
+
+        }
+        return tableList;
+
+    }
+
 
 
 
