@@ -1,58 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.DashboardController">
-   <children>
-      <VBox layoutX="25.0" layoutY="14.0" prefHeight="122.0" prefWidth="100.0" spacing="14.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <VBox prefHeight="528.0" prefWidth="253.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="ID">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Name">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label prefHeight="17.0" prefWidth="48.0" text="Regd">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
-            <Label text="Roll">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
+            <HBox alignment="CENTER_LEFT" prefHeight="32.0" prefWidth="183.0" spacing="10.0">
+               <children>
+                  <ImageView fitHeight="28.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../build/resources/main/assets/database.png" />
+                     </image>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="103.0" text="DASHBOARD">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
          </children>
       </VBox>
-      <VBox layoutX="114.0" layoutY="14.0" prefHeight="122.0" prefWidth="140.0" spacing="5.5">
-         <children>
-            <TextField fx:id="tfID" />
-            <TextField fx:id="tfName" layoutX="10.0" layoutY="10.0" />
-            <TextField fx:id="tfRegd" layoutX="10.0" layoutY="36.0" />
-            <TextField fx:id="tfRoll" layoutX="10.0" layoutY="62.0" />
-         </children>
-      </VBox>
-      <TableView fx:id="tvStudent" layoutX="264.0" layoutY="7.0" onMouseClicked="#handleMouseAction" prefHeight="383.0" prefWidth="333.0">
-        <columns>
-          <TableColumn fx:id="colID" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="colName" prefWidth="98.0" text="Name" />
-            <TableColumn fx:id="colRegd" prefWidth="83.0" text="Regd" />
-            <TableColumn fx:id="colRoll" prefWidth="76.0" text="Roll" />
-        </columns>
-      </TableView>
-      <Button fx:id="btnInsert" layoutX="31.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="26.0" prefWidth="58.0" text="Insert" />
-      <Button fx:id="btnUpdate" layoutX="98.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButton" text="Update" />
-      <Button fx:id="btnDelete" layoutX="169.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleButton" prefHeight="26.0" prefWidth="58.0" text="Delete" />
-   </children>
-</AnchorPane>
+   </left>
+</BorderPane>

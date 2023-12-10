@@ -76,7 +76,7 @@ public class DashboardController implements Initializable  {
         Connection con;
         try{
             con= DriverManager
-                    .getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","password");
+                    .getConnection("jdbc:postgresql://localhost:5432/postgres","postgres","8187");
             return con;
         } catch (SQLException e) {
             System.out.println("Connection Error");
@@ -114,7 +114,6 @@ public class DashboardController implements Initializable  {
         colName.setCellValueFactory(new PropertyValueFactory<Students,String>("Name"));
         colRegd.setCellValueFactory(new PropertyValueFactory<Students,String>("Regd"));
         colRoll.setCellValueFactory(new PropertyValueFactory<Students,String>("Roll"));
-
         tvStudent.setItems(list);
     }
 
