@@ -8,9 +8,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 
 .vbox_background_center{
-    -fx-background-image: url("../assets/splash.gif");
+    -fx-background-image: url("../assets/background.gif");
     -fx-background-size: contain;
-    
+    -fx-background-repeat: no-repeat;
 }
 
 .vbox_background_right{

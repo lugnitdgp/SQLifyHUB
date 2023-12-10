@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class Login {
+    public static Connection connection;
     
     @FXML
     private Button connect;
@@ -27,34 +28,24 @@ public class Login {
     @FXML
     private TextField password;
     
-    
     public void Connect(ActionEvent event) throws IOException{
         getConnection();
     }
     
-    
-   public void getConnection() throws IOException {
+    public void getConnection() throws IOException {
       App main = new App();
-      String db_name = db.getText().toString();
+      var db_name = db.getText().toString();
       String user = username.getText().toString();
       String passkey = password.getText().toString();
-      
-      Connection connection = null;
       try {
          Class.forName("org.postgresql.Driver");
-         
          connection = DriverManager
             .getConnection("jdbc:postgresql://localhost:5432/"+db_name,user,passkey);
-         
       } catch (ClassNotFoundException | SQLException e) {
-          
-         System.err.println(e.getClass().getName()+": "+e.getMessage());
-         System.exit(0);
-         
+        System.err.println(e.getClass().getName()+": "+e.getMessage());
+        System.exit(0);
       }
-      
-      System.out.println("Opened database successfully");
+      System.out.println(connection);
       main.changeScene("/fxml/dashboard.fxml");
-   }
-    
+    }
 }

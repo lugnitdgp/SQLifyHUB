@@ -7,23 +7,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.Login">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="780.0" style="-fx-background-color: #18191b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.Login">
    <right>
-      <VBox prefWidth="332.0" styleClass="vbox_background_right" stylesheets="@../stylesheets/app.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="473.0" prefWidth="336.0" style="-fx-background-color: #18191b;" styleClass="vbox_background_right" stylesheets="@../stylesheets/app.css" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="50.0" prefWidth="260.0" style="-fx-background-color: white; -fx-background-radius: 50;">
                <VBox.margin>
                   <Insets left="10.0" right="10.0" top="60.0" />
                </VBox.margin>
                <children>
-                  <Button mnemonicParsing="false" prefWidth="120.0" styleClass="button_active" text="CONNECT DB" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="123.0" styleClass="button_active" text="CONNECT DB" textAlignment="CENTER">
                      <HBox.margin>
-                        <Insets left="30.0" right="20.0" top="8.0" />
+                        <Insets left="10.0" right="10.0" top="6.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefWidth="120.0" styleClass="button_inactive" text="CREATE DB">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="119.0" styleClass="button_inactive" text="CREATE DB">
                      <HBox.margin>
-                        <Insets left="20.0" right="30.0" top="7.0" />
+                        <Insets left="35.0" right="10.0" top="6.0" />
                      </HBox.margin>
                   </Button>
                </children>
@@ -43,7 +43,7 @@
                   <Insets left="40.0" right="40.0" top="20.0" />
                </VBox.margin>
             </TextField>
-            <Button fx:id="connect" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getConnection" prefWidth="250.0" styleClass="button_active" text="CONNECT DB" textAlignment="CENTER">
+            <Button fx:id="connect" contentDisplay="CENTER" mnemonicParsing="false" onAction="#getConnection" prefHeight="50.0" prefWidth="250.0" styleClass="button_active" text="CONNECT DB" textAlignment="CENTER">
                <VBox.margin>
                   <Insets left="40.0" right="40.0" top="40.0" />
                </VBox.margin>
@@ -51,6 +51,6 @@
          </children></VBox>
    </right>
    <center>
-      <VBox prefWidth="449.0" styleClass="vbox_background_center" stylesheets="@../stylesheets/app.css" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="517.0" prefWidth="520.0" styleClass="vbox_background_center" stylesheets="@../stylesheets/app.css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
