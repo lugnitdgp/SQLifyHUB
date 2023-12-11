@@ -55,5 +55,4 @@ public class Table {
     void handleMouseAction(MouseEvent event) {
 
     }
-
 }

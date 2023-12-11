@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -64,8 +65,13 @@ public class DashboardController  implements Initializable{
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        startApp();
+    }
+    
+    public void startApp(){
         ObservableList<String> Tables = getTables();
         if(Tables != null){
+            navigationbox.getChildren().clear();
             for(int i=0;i<Tables.size();i++){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/fxml/tabletile.fxml"));
@@ -78,7 +84,6 @@ public class DashboardController  implements Initializable{
                 } catch (IOException ex) {
                     Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
             }
         }
     }
@@ -89,7 +94,11 @@ public class DashboardController  implements Initializable{
             dashboard.setCenter(main);
         }
         else if("CREATE".equals(name)){
-            root = FXMLLoader.load(getClass().getResource("/fxml/createTable.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/createTable.fxml"));
+            root = fxmlLoader.load();
+            CreateTablesController controller = fxmlLoader.getController();
+            controller.setController(this);
             dashboard.setCenter(root);
         }
         else if(!"HOME".equals(name)){

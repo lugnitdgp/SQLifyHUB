@@ -16,7 +16,8 @@ public class TableTile {
     
     private DashboardController controller;
     
-     public void setController(DashboardController controller) {
+     
+    public void setController(DashboardController controller) {
         this.controller = controller;
     }
 

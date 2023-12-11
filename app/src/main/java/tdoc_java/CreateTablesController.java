@@ -34,8 +34,8 @@ public class CreateTablesController implements Initializable {
     @FXML
     private void addColumn(ActionEvent e){
         list.add(new Columns(columnName.getText(),myChoiceBox.getValue()));
-
     }
+    
     @FXML
     private void createTable(){
         String query = "CREATE TABLE IF NOT EXISTS "+tableName.getText()+"("+list.get(0).getName()+" "+list.get(0).getType()+" PRIMARY KEY,";
@@ -55,17 +55,16 @@ public class CreateTablesController implements Initializable {
             }
         }
         System.out.println(query);
-//        try{
-//            Connection con = DriverManager
-//                    .getConnection();
-//            Statement st = con.createStatement();
-//            st.execute(query);
-//        }catch(Exception e){
-//            e.printStackTrace();
-//
-//        }
+        try{
+            Connection connection = Login.connection; 
+            Statement st = connection.createStatement();
+            st.execute(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        controller.startApp();
     }
-
+    
     String[] types = {"integer","varchar","boolean"};
     ObservableList<Columns> list = FXCollections.observableArrayList(new Columns("id","integer"));
 
@@ -75,7 +74,12 @@ public class CreateTablesController implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<Columns,String>("name"));
         colType.setCellValueFactory(new PropertyValueFactory<Columns,String>("type"));
         myTable.setItems(list);
-
     }
-
+    
+    private DashboardController controller;
+    
+     
+    public void setController(DashboardController controller) {
+        this.controller = controller;
+    }
 }
