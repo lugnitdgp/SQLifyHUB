@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.CreateTablesController">
+    <children>
+        <Label alignment="CENTER" layoutX="-1.0" layoutY="14.0" prefHeight="33.0" prefWidth="600.0" text="Create table">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <TextField fx:id="tableName" layoutX="220.0" layoutY="63.0" promptText="Enter name of table" />
+        <TextField fx:id="columnName" layoutX="138.0" layoutY="110.0" promptText="Column name" />
+        <ChoiceBox fx:id="myChoiceBox" layoutX="318.0" layoutY="110.0" prefWidth="150.0" />
+        <TableView fx:id="myTable" layoutY="151.0" prefHeight="146.0" prefWidth="600.0">
+            <columns>
+                <TableColumn fx:id="colName" prefWidth="304.0" text="Name" />
+                <TableColumn fx:id="colType" prefWidth="295.0" text="Type" />
+            </columns>
+        </TableView>
+        <Button layoutX="501.0" layoutY="110.0" mnemonicParsing="false" onAction="#addColumn" prefHeight="26.0" prefWidth="27.0" text="+" />
+        <Button alignment="CENTER" layoutX="230.0" layoutY="326.0" mnemonicParsing="false" onAction="#createTable" prefHeight="43.0" prefWidth="160.0" text="Create Table">
+            <font>
+                <Font size="16.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>
