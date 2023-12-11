@@ -3,14 +3,9 @@ package tdoc_java;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 
@@ -20,14 +15,52 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ListView;
+import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class DashboardController  implements Initializable{
     
+    
+    
+    @FXML
+    private BorderPane dashboard;
+
     @FXML
     private VBox navigationbox;
+
+    @FXML
+    private Button home;
+
+    @FXML
+    private AnchorPane main;
+
+    @FXML
+    private Label username;
+
+    @FXML
+    private Button create;
+
+    @FXML
+    private Button logout;
+
+    @FXML
+    void Home(MouseEvent event) throws IOException {
+        loadFXML("HOME");
+    }
+
+    @FXML
+    void Logout(MouseEvent event) {
+        
+    }
+
+    @FXML
+    void createTable(MouseEvent event) throws IOException {
+        loadFXML("CREATE");
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,13 +73,28 @@ public class DashboardController  implements Initializable{
                     HBox listtile = fxmlLoader.load();
                     TableTile Tile = fxmlLoader.getController();
                     Tile.setData(Tables.get(i));
-                    navigationbox.getChildren().add(listtile);
-                    
+                    Tile.setController(this);
+                    navigationbox.getChildren().add(listtile);             
                 } catch (IOException ex) {
                     Logger.getLogger(DashboardController.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
             }
+        }
+    }
+    
+    public void loadFXML(String name) throws IOException{
+        Parent root = null;
+        if("HOME".equals(name)){
+            dashboard.setCenter(main);
+        }
+        else if("CREATE".equals(name)){
+            root = FXMLLoader.load(getClass().getResource("/fxml/createTable.fxml"));
+            dashboard.setCenter(root);
+        }
+        else if(!"HOME".equals(name)){
+            root = FXMLLoader.load(getClass().getResource("/fxml/table.fxml"));
+            dashboard.setCenter(root);
         }
     }
      
