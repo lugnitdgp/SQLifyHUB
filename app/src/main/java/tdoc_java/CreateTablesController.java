@@ -65,7 +65,7 @@ public class CreateTablesController implements Initializable {
         controller.startApp();
     }
     
-    String[] types = {"integer","varchar","boolean"};
+    String[] types = {"integer","varchar"};
     ObservableList<Columns> list = FXCollections.observableArrayList(new Columns("id","integer"));
 
     @Override

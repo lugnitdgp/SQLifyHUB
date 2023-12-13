@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -49,7 +50,7 @@ public class DashboardController  implements Initializable{
     private Button logout;
 
     @FXML
-    void Home(MouseEvent event) throws IOException {
+    void Home(MouseEvent event) throws IOException, SQLException {
         loadFXML("HOME");
     }
 
@@ -59,7 +60,7 @@ public class DashboardController  implements Initializable{
     }
 
     @FXML
-    void createTable(MouseEvent event) throws IOException {
+    void createTable(MouseEvent event) throws IOException, SQLException {
         loadFXML("CREATE");
     }
     
@@ -88,7 +89,7 @@ public class DashboardController  implements Initializable{
         }
     }
     
-    public void loadFXML(String name) throws IOException{
+    public void loadFXML(String name) throws IOException, SQLException{
         Parent root = null;
         if("HOME".equals(name)){
             dashboard.setCenter(main);
@@ -102,7 +103,84 @@ public class DashboardController  implements Initializable{
             dashboard.setCenter(root);
         }
         else if(!"HOME".equals(name)){
-            root = FXMLLoader.load(getClass().getResource("/fxml/table.fxml"));
+            String query = "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '"+name+"';";
+            ObservableList<Columns> ColumnList = FXCollections.observableArrayList();
+            Connection connection = Login.connection;
+            Statement st;
+            ResultSet rs;
+            st = connection.createStatement();
+            try{
+            rs = st.executeQuery(query);
+            String ColumnName;
+            String ColumnType;
+            while (rs.next()){
+                ColumnName = rs.getString("column_name");
+                ColumnType = rs.getString("data_type");
+                ColumnList.add(new Columns(ColumnName,ColumnType));
+            }
+            }catch (SQLException e){
+            
+            }
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/dynamictable.fxml"));
+            root = fxmlLoader.load();
+            Table tablecontroller = fxmlLoader.getController();
+            for(int i=0;i<ColumnList.size();i++){
+                tablecontroller.addColumn(ColumnList.get(i));
+                if("character varying".equals(ColumnList.get(i).getType())){
+                }
+                else if("integer".equals(ColumnList.get(i).getType())){
+                }
+            }
+            
+            StringBuilder rowquery= new StringBuilder("SELECT ");
+            for (Columns column : ColumnList) {
+                rowquery.append(column.getName()).append(", ");
+            }
+            rowquery.setLength(rowquery.length() - 2);
+            rowquery.append(" FROM " + name);
+            
+            ResultSet resultSet = st.executeQuery(rowquery.toString());
+            List<Cells> rows = new ArrayList<>();
+            while (resultSet.next()) {
+                Cells row = new Cells(null,null,null,null,null,null,null,null,null,null,null,null);
+                int set = 0;
+                for (Columns column : ColumnList) {
+                    Object data = resultSet.getObject(column.getName());
+                    set++;
+                    switch((char)(96+set)){
+                        case 'a':
+                            row.a = data.toString();break;
+                        case 'b':
+                            row.b = data.toString();break;
+                        case 'c':
+                            row.c = data.toString();break;
+                        case 'd':
+                            row.d = data.toString();break;
+                        case 'e':
+                            row.e = data.toString();break;
+                        case 'f':
+                            row.f = data.toString();break;
+                        case 'g':
+                            row.g = data.toString();break;
+                        case 'h':
+                            row.h = data.toString();break;
+                        case 'i':
+                            row.i = data.toString();break;
+                        case 'j':
+                            row.j = data.toString();break;
+                        case 'k':
+                            row.k = data.toString();break;
+                        case 'l':
+                            row.l = data.toString();break;
+                    }
+                    
+                }
+                rows.add(row);
+            }
+            for(int i=0;i<rows.size();i++){
+                tablecontroller.addRow(rows.get(i));
+            }
             dashboard.setCenter(root);
         }
     }

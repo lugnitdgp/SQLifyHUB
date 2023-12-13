@@ -1,58 +1,71 @@
 package tdoc_java;
-
-import javafx.event.ActionEvent;
+import java.util.List;
+import javafx.scene.control.TableColumn;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.CheckBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.BooleanStringConverter;
+import javafx.util.converter.NumberStringConverter;
 
 public class Table {
 
     @FXML
-    private TextField tfID;
+    private Button addrow;
 
     @FXML
-    private TextField tfName;
+    private Button removerow;
 
     @FXML
-    private TextField tfRegd;
+    private Button addcol;
 
     @FXML
-    private TextField tfRoll;
+    private Button removecol;
 
     @FXML
-    private TableView<?> tvStudent;
+    private TableView<Cells> base;
 
     @FXML
-    private TableColumn<?, ?> colID;
-
-    @FXML
-    private TableColumn<?, ?> colName;
-
-    @FXML
-    private TableColumn<?, ?> colRegd;
-
-    @FXML
-    private TableColumn<?, ?> colRoll;
-
-    @FXML
-    private Button btnInsert;
-
-    @FXML
-    private Button btnUpdate;
-
-    @FXML
-    private Button btnDelete;
-
-    @FXML
-    void handleButton(ActionEvent event) {
-
+    void AddColumn(MouseEvent event) {
+        addColumn(new Columns("",""));
     }
 
     @FXML
-    void handleMouseAction(MouseEvent event) {
+    void AddRow(MouseEvent event) {
+        Cells row = null;
+        addRow(row);
+    }
 
+    @FXML
+    void DeleteColumn(MouseEvent event) {
+    }
+
+    @FXML
+    void DeleteRow(MouseEvent event) {
+    }
+    
+    int Stringcounter = 0;
+    
+    
+    public void addColumn(Columns col){ 
+    TableColumn column = new TableColumn(col.getName());
+//    if(col.getType() == "character varying")
+//    column.setCellFactory(TextFieldTableCell.forTableColumn());
+//    else if(col.getType() == "integer")
+//    column.setCellFactory(TextFieldTableCell.forTableColumn(new NumberStringConverter()));
+      Stringcounter++;
+      String set = (char) (96+Stringcounter) + "";
+      column.setCellFactory(TextFieldTableCell.forTableColumn());
+      column.setCellValueFactory(new PropertyValueFactory<Cells,String>(set));
+      
+    base.getColumns().add(column);
+    }
+    
+    public void addRow(Cells row){
+        base.getItems().add(row);
     }
 }

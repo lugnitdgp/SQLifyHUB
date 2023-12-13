@@ -2,6 +2,7 @@
 package tdoc_java;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +23,7 @@ public class TableTile {
     }
 
     @FXML
-    public void View(MouseEvent event) throws IOException {
+    public void View(MouseEvent event) throws IOException, SQLException {
         String name = tablename.getText();
         controller.loadFXML(name);
     }

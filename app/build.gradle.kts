@@ -17,15 +17,11 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
-
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-
-    // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.postgresql:postgresql:42.2.27")
-    
+    implementation("org.projectlombok:lombok:1.18.30")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
