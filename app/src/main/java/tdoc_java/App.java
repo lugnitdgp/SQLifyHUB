@@ -16,6 +16,9 @@ public class App extends Application {
           stage = primarystage;
           Parent root = FXMLLoader.load(getClass().getResource("/fxml/app.fxml"));
           Scene scene = new Scene(root);
+          stage.setMinWidth(1400);
+          stage.setMinHeight(800);
+          stage.setResizable(true);
           String css = this.getClass().getResource("/stylesheets/app.css").toExternalForm();
           scene.getStylesheets().add(css);
           primarystage.setScene(scene);

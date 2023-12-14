@@ -1,5 +1,4 @@
 package tdoc_java;
-
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -7,8 +6,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-
-
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -140,6 +137,9 @@ public class DashboardController  implements Initializable{
             fxmlLoader.setLocation(getClass().getResource("/fxml/dynamictable.fxml"));
             root = fxmlLoader.load();
             Table tablecontroller = fxmlLoader.getController();
+            tablecontroller.setName(name);
+            tablecontroller.setColumnList(ColumnList);
+            tablecontroller.setController(this);
             for(int i=0;i<ColumnList.size();i++){
                 tablecontroller.addColumn(ColumnList.get(i));
                 if("character varying".equals(ColumnList.get(i).getType())){
@@ -216,6 +216,7 @@ public class DashboardController  implements Initializable{
                 tableName = rs.getString("table_name");
                 tableList.add(tableName);
             }
+            st.close();
         }catch (SQLException e){
             return null;
         }
