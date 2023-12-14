@@ -68,6 +68,11 @@ public class DashboardController  implements Initializable{
     void createRole(MouseEvent e)throws IOException,SQLException{
         loadFXML("ROLE");
     }
+
+    @FXML
+    void createDb(MouseEvent e)throws IOException,SQLException{
+        loadFXML("DB");
+    }
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -114,7 +119,16 @@ public class DashboardController  implements Initializable{
             controller.setController(this);
             dashboard.setCenter(root);
 
-        } else if(!"HOME".equals(name)){
+        }else if("DB".equals(name)){
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/createDB.fxml"));
+            root = fxmlLoader.load();
+            CreateDBController controller = fxmlLoader.getController();
+            controller.setController(this);
+            dashboard.setCenter(root);
+
+        }
+        else if(!"HOME".equals(name)){
             String query = "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '"+name+"';";
             ObservableList<Columns> ColumnList = FXCollections.observableArrayList();
             Connection connection = Login.connection;

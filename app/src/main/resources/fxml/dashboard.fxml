@@ -171,6 +171,21 @@
                   <Button fx:id="role" mnemonicParsing="false" onMouseClicked="#createRole" prefHeight="26.0" prefWidth="88.0" styleClass="button_inactive" stylesheets="@../stylesheets/app.css" text="+" />
                </children>
             </VBox>
+            <VBox alignment="CENTER" layoutX="363.0" layoutY="270.0" prefHeight="118.0" prefWidth="135.0" style="-fx-border-color: gray; -fx-background-color: #1e1e1e; -fx-background-radius: 20; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" prefHeight="33.0" prefWidth="133.0" text="CREATE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="131.0" text="DB" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="DB" mnemonicParsing="false" onMouseClicked="#createDb" prefHeight="26.0" prefWidth="88.0" styleClass="button_inactive" stylesheets="@../stylesheets/app.css" text="+" />
+               </children>
+            </VBox>
          </children></AnchorPane>
    </center>
    <right>

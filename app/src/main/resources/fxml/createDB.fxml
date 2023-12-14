@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #18191b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.CreateDBController">
+   <children>
+      <Label alignment="CENTER" layoutX="-1.0" layoutY="40.0" prefHeight="17.0" prefWidth="600.0" text="Create DB" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="dbName" layoutX="220.0" layoutY="109.0" promptText="Enter DB name" />
+      <Button layoutX="262.0" layoutY="163.0" mnemonicParsing="false" onMouseClicked="#createDB" styleClass="button_inactive" stylesheets="@../stylesheets/app.css" text="Create DB" />
+      <ListView fx:id="DBList" layoutX="-1.0" layoutY="274.0" prefHeight="126.0" prefWidth="605.0" />
+      <Label alignment="CENTER" layoutX="5.0" layoutY="245.0" prefHeight="17.0" prefWidth="600.0" text="DB List" textFill="WHITE">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
