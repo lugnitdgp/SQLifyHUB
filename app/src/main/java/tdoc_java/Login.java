@@ -41,6 +41,7 @@ public class Login {
          Class.forName("org.postgresql.Driver");
          connection = DriverManager
             .getConnection("jdbc:postgresql://localhost:5432/"+db_name,user,passkey);
+
       } catch (ClassNotFoundException | SQLException e) {
         System.err.println(e.getClass().getName()+": "+e.getMessage());
         System.exit(0);

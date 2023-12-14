@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="dashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1002.0" style="-fx-background-color: #18191b;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.DashboardController">
+<BorderPane fx:id="dashboard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="1002.0" style="-fx-background-color: #18191b;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tdoc_java.DashboardController">
    <left>
       <VBox prefHeight="528.0" prefWidth="253.0" style="-fx-background-color: #1e1e1e; -fx-background-radius: 25;" BorderPane.alignment="CENTER_LEFT">
          <children>
@@ -154,6 +154,21 @@
                      </font>
                   </Label>
                   <Button fx:id="create" mnemonicParsing="false" onMouseClicked="#createTable" prefHeight="26.0" prefWidth="88.0" styleClass="button_inactive" stylesheets="@../stylesheets/app.css" text="+" />
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" layoutX="201.0" layoutY="270.0" prefHeight="118.0" prefWidth="135.0" style="-fx-border-color: gray; -fx-background-color: #1e1e1e; -fx-background-radius: 20; -fx-border-radius: 20;">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" prefHeight="33.0" prefWidth="133.0" text="CREATE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="131.0" text="ROLE" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="23.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="role" mnemonicParsing="false" onMouseClicked="#createRole" prefHeight="26.0" prefWidth="88.0" styleClass="button_inactive" stylesheets="@../stylesheets/app.css" text="+" />
                </children>
             </VBox>
          </children></AnchorPane>

@@ -50,6 +50,9 @@ public class DashboardController  implements Initializable{
     private Button logout;
 
     @FXML
+    private Button role;
+
+    @FXML
     void Home(MouseEvent event) throws IOException, SQLException {
         loadFXML("HOME");
     }
@@ -62,6 +65,11 @@ public class DashboardController  implements Initializable{
     @FXML
     void createTable(MouseEvent event) throws IOException, SQLException {
         loadFXML("CREATE");
+    }
+
+    @FXML
+    void createRole(MouseEvent e)throws IOException,SQLException{
+        loadFXML("ROLE");
     }
     
     @Override
@@ -101,8 +109,15 @@ public class DashboardController  implements Initializable{
             CreateTablesController controller = fxmlLoader.getController();
             controller.setController(this);
             dashboard.setCenter(root);
-        }
-        else if(!"HOME".equals(name)){
+        } else if ("ROLE".equals(name)) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/createRole.fxml"));
+            root = fxmlLoader.load();
+            CreateRolesController controller = fxmlLoader.getController();
+            controller.setController(this);
+            dashboard.setCenter(root);
+
+        } else if(!"HOME".equals(name)){
             String query = "SELECT column_name, data_type FROM information_schema.columns WHERE table_name = '"+name+"';";
             ObservableList<Columns> ColumnList = FXCollections.observableArrayList();
             Connection connection = Login.connection;
