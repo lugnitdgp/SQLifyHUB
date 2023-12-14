@@ -140,6 +140,7 @@ public class DashboardController  implements Initializable{
             tablecontroller.setName(name);
             tablecontroller.setColumnList(ColumnList);
             tablecontroller.setController(this);
+            
             for(int i=0;i<ColumnList.size();i++){
                 tablecontroller.addColumn(ColumnList.get(i));
                 if("character varying".equals(ColumnList.get(i).getType())){
@@ -189,13 +190,22 @@ public class DashboardController  implements Initializable{
                         case 'l':
                             row.l = data.toString();break;
                     }
-                    
                 }
                 rows.add(row);
             }
             for(int i=0;i<rows.size();i++){
                 tablecontroller.addRow(rows.get(i));
             }
+            String rolequery = "SELECT current_user AS logged_in_user, current_setting('role') AS current_role;" ;
+            resultSet = st.executeQuery(rolequery);
+            String currentRole = "";
+            while (resultSet.next()) {
+                String loggedInUser = resultSet.getString("logged_in_user");
+                currentRole = resultSet.getString("current_role");
+                System.out.println("Logged-in User: " + loggedInUser);
+                System.out.println("Current Role: " + currentRole);
+            }
+            tablecontroller.setRole(currentRole);
             dashboard.setCenter(root);
         }
     }

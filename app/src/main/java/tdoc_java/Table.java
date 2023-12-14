@@ -25,6 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 
@@ -53,6 +54,9 @@ public class Table implements Initializable{
     
     @FXML
     private Button deletetable;
+    
+    @FXML
+    private HBox opspanel;
     
     
     
@@ -340,5 +344,11 @@ public class Table implements Initializable{
             removerow.setDisable(newValue == null);
             update.setDisable(newValue == null);
         });
+    }
+    
+    public void setRole(String role){
+        if(role == "read"){
+            opspanel.setVisible(false);
+        }
     }
 }
