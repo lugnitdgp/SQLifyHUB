@@ -55,8 +55,8 @@ public class DashboardController  implements Initializable{
     }
 
     @FXML
-    void Logout(MouseEvent event) {
-        
+    void Logout(MouseEvent event) throws IOException {
+         
     }
 
     @FXML
@@ -210,16 +210,6 @@ public class DashboardController  implements Initializable{
             for(int i=0;i<rows.size();i++){
                 tablecontroller.addRow(rows.get(i));
             }
-            String rolequery = "SELECT current_user AS logged_in_user, current_setting('role') AS current_role;" ;
-            resultSet = st.executeQuery(rolequery);
-            String currentRole = "";
-            while (resultSet.next()) {
-                String loggedInUser = resultSet.getString("logged_in_user");
-                currentRole = resultSet.getString("current_role");
-                System.out.println("Logged-in User: " + loggedInUser);
-                System.out.println("Current Role: " + currentRole);
-            }
-            tablecontroller.setRole(currentRole);
             dashboard.setCenter(root);
         }
     }
