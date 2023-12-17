@@ -56,7 +56,9 @@ public class DashboardController  implements Initializable{
 
     @FXML
     void Logout(MouseEvent event) throws IOException {
-         
+         Login.connection = null;
+         App main = new App();
+         main.changeScene("/fxml/app.fxml");
     }
 
     @FXML
@@ -118,7 +120,6 @@ public class DashboardController  implements Initializable{
             CreateRolesController controller = fxmlLoader.getController();
             controller.setController(this);
             dashboard.setCenter(root);
-
         }else if("DB".equals(name)){
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/fxml/createDB.fxml"));
@@ -144,7 +145,8 @@ public class DashboardController  implements Initializable{
                 ColumnType = rs.getString("data_type");
                 ColumnList.add(new Columns(ColumnName,ColumnType));
             }
-            }catch (SQLException e){
+            }
+            catch (SQLException e){
             
             }
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -154,7 +156,6 @@ public class DashboardController  implements Initializable{
             tablecontroller.setName(name);
             tablecontroller.setColumnList(ColumnList);
             tablecontroller.setController(this);
-            
             for(int i=0;i<ColumnList.size();i++){
                 tablecontroller.addColumn(ColumnList.get(i));
                 if("character varying".equals(ColumnList.get(i).getType())){

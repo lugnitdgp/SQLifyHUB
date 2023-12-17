@@ -27,17 +27,14 @@ public class CreateRolesController implements Initializable {
         String pass = password.getText();
         String query1 = "CREATE ROLE "+name+" WITH LOGIN PASSWORD '"+pass+"';";
         String query2 = (rolesList.getValue().equals("Read"))?"GRANT pg_read_all_data TO "+roleName.getText()+";":"ALTER ROLE "+roleName.getText()+" WITH SUPERUSER;";
-
         try{
             Connection connection = Login.connection;
             Statement st = connection.createStatement();
             st.execute(query1);
             st.execute(query2);
-
         }catch(Exception e){
             e.printStackTrace();
         }
-
         controller.startApp();
     }
 
