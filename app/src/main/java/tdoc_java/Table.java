@@ -88,7 +88,7 @@ public class Table implements Initializable{
         }
         comboBox.setItems(items);
         Label label = new Label();
-        label.setText("Choose Feild to Update");
+        label.setText("Choose Field to Update");
         label.setStyle("-fx-padding: 10 0 5 0;-fx-text-fill: white;");
         operations.getChildren().add(label);
         operations.getChildren().add(comboBox);
