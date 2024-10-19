@@ -8,17 +8,29 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class Login {
+
+    boolean createTable = false;
+
     public static Connection connection;
     
     @FXML
     private Button connect;
-    
+
+    @FXML
+    private Button connectDbButton;
+
+    @FXML
+    private Button createDbButton;
+
     @FXML
     private TextField db;
     
@@ -29,25 +41,62 @@ public class Login {
     private TextField password;
     
     public void Connect(ActionEvent event) throws IOException{
-        getConnection();
+        performConnect();
     }
     
-    public void getConnection() throws IOException {
+    public void performConnect() throws IOException {
       App main = new App();
       var db_name = db.getText().toString();
       String user = username.getText().toString();
       String passkey = password.getText().toString();
       try {
-         Class.forName("org.postgresql.Driver");
-         connection = DriverManager
-            .getConnection("jdbc:postgresql://localhost:5432/"+db_name,user,passkey);
+          Class.forName("org.postgresql.Driver");
+          if (createTable) {
+              connection = DriverManager
+                      .getConnection("jdbc:postgresql://localhost:5432/", user, passkey);
+              try {
+                  Statement statement = connection.createStatement();
+                  statement.execute("CREATE DATABASE " + db_name + ";");
+              } finally {
+                  connection.close();
+              }
+          }
 
+          connection = DriverManager
+                  .getConnection("jdbc:postgresql://localhost:5432/" + db_name, user, passkey);
 
-      } catch (ClassNotFoundException | SQLException e) {
+          System.out.println(connection);
+          main.changeScene("/fxml/dashboard.fxml");
+      } catch (SQLException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Connection Failed");
+        alert.setContentText(e.getMessage());
+        alert.show();
+      } catch (ClassNotFoundException e) {
         System.err.println(e.getClass().getName()+": "+e.getMessage());
         System.exit(0);
       }
-      System.out.println(connection);
-      main.changeScene("/fxml/dashboard.fxml");
+    }
+
+    public void connectDb() {
+        if (createTable) {
+            String styleClass1 = connectDbButton.getStyleClass().removeLast();
+            String styleClass2 = createDbButton.getStyleClass().removeLast();
+            connectDbButton.getStyleClass().addLast(styleClass2);
+            createDbButton.getStyleClass().addLast(styleClass1);
+
+            createTable = false;
+        }
+    }
+
+    public void createDb() {
+        if (!createTable) {
+            String styleClass1 = connectDbButton.getStyleClass().removeLast();
+            String styleClass2 = createDbButton.getStyleClass().removeLast();
+            connectDbButton.getStyleClass().addLast(styleClass2);
+            createDbButton.getStyleClass().addLast(styleClass1);
+
+            createTable = true;
+        }
     }
 }

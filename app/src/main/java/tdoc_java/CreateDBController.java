@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -31,14 +32,16 @@ public class CreateDBController implements Initializable {
             Connection connection = Login.connection;
             Statement st = connection.createStatement();
             st.execute("CREATE DATABASE "+dbName.getText()+";");
+            st.close();
 
+            updateDatabasesList();
+            controller.startApp();
         } catch (Exception exception){
-            System.out.println(exception.getStackTrace());
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Creation failed");
+            alert.setContentText(exception.getMessage());
+            alert.show();
         }
-
-
-
-        controller.startApp();
     }
 
 
@@ -52,15 +55,19 @@ public class CreateDBController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        updateDatabasesList();
+    }
+
+    private void updateDatabasesList() {
         try{
             Connection connection = Login.connection;
             Statement st = connection.createStatement();
             ResultSet rs =st.executeQuery("SELECT datname FROM pg_database;");
+            list.clear();
             while (rs.next()){
                 list.add(rs.getString("datname"));
             }
             st.close();
-            connection.close();
             System.out.println(list);
             DBList.setItems(list);
 

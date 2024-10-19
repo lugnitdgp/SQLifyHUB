@@ -14,6 +14,7 @@ public class App extends Application {
     public void start(Stage primarystage) {
           try{
           stage = primarystage;
+          stage.setTitle("SQLifyHUB");
           Parent root = FXMLLoader.load(getClass().getResource("/fxml/app.fxml"));
           Scene scene = new Scene(root);
           stage.setMinWidth(1400);
@@ -31,7 +32,7 @@ public class App extends Application {
     
     public void changeScene(String fxml) throws IOException {
         Parent pane = FXMLLoader.load(getClass().getResource(fxml));
-        stage.setScene(new Scene(pane));
+        stage.setScene(new Scene(pane, stage.getWidth(), stage.getHeight()));
     }
 
 
